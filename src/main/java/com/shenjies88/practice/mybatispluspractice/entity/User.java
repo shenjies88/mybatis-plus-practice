@@ -1,7 +1,9 @@
 
 package com.shenjies88.practice.mybatispluspractice.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -28,7 +30,6 @@ public class User {
     private String email;
 
     @ApiModelProperty(value = "0正常，1删除" , hidden = true)
-    @TableLogic
     @TableField(value = "status" , select = false)
     private Integer status;
 }
