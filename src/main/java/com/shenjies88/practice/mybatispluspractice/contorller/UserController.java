@@ -1,11 +1,14 @@
 package com.shenjies88.practice.mybatispluspractice.contorller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shenjies88.practice.mybatispluspractice.common.HttpResult;
 import com.shenjies88.practice.mybatispluspractice.entity.User;
 import com.shenjies88.practice.mybatispluspractice.mapper.UserMapper;
 import com.shenjies88.practice.mybatispluspractice.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,18 +27,18 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    public UserController(UserMapper userMapper,UserService userService) {
+    public UserController(UserMapper userMapper, UserService userService) {
         this.userMapper = userMapper;
         this.userService = userService;
     }
 
     @ApiOperation("用户列表")
     @GetMapping
-    public HttpResult<List<User>> list() {
-        System.out.println(("----- selectAll method test ------"));
-        List<User> userList = userMapper.selectList(null);
-        userList.forEach(System.out::println);
-        return HttpResult.success(userList);
+    public HttpResult<List<User>> list(@ApiParam(value = "页数") @RequestParam(defaultValue = "1") Integer pageNum,
+                                       @ApiParam(value = "条数") @RequestParam(defaultValue = "10") Integer pageSize) {
+        IPage<User> page = new Page<>(pageNum, pageSize);
+        userService.page(page);
+        return HttpResult.success(page);
     }
 
     @ApiOperation("用户详情")
