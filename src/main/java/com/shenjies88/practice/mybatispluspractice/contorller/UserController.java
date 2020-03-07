@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shenjies88.practice.mybatispluspractice.common.HttpResult;
 import com.shenjies88.practice.mybatispluspractice.entity.User;
-import com.shenjies88.practice.mybatispluspractice.mapper.UserMapper;
 import com.shenjies88.practice.mybatispluspractice.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,12 +23,10 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private UserMapper userMapper;
     private UserService userService;
 
     @Autowired
-    public UserController(UserMapper userMapper, UserService userService) {
-        this.userMapper = userMapper;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -45,27 +42,27 @@ public class UserController {
     @ApiOperation("用户详情")
     @GetMapping("/{id}")
     public HttpResult<User> detail(@PathVariable("id") Integer id) {
-        return HttpResult.success(userMapper.selectById(id));
+        return HttpResult.success(userService.getById(id));
     }
 
     @ApiOperation("新增用户")
     @PutMapping
     public HttpResult insert(@RequestBody User body) {
-        userMapper.insert(body);
+        userService.save(body);
         return HttpResult.success();
     }
 
     @ApiOperation("删除用户")
     @DeleteMapping("/{id}")
     public HttpResult delete(@PathVariable Integer id) {
-        userMapper.deleteById(id);
+        userService.removeById(id);
         return HttpResult.success();
     }
 
     @ApiOperation("修改用户")
     @PostMapping("/{id}")
     public HttpResult update(@RequestBody User body) {
-        userMapper.updateById(body);
+        userService.updateById(body);
         return HttpResult.success();
     }
 }
