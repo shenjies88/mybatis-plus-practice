@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: mybatis-plus-practice
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    root: info
+    org.springframework.jdbc.core.JdbcTemplate: debug
+    com.shenjies88.practice.mybatispluspractice: debug
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: status
+      insert-strategy: not_empty
+      update-strategy: not_empty
+      select-strategy: ignored
+
+
+
+
