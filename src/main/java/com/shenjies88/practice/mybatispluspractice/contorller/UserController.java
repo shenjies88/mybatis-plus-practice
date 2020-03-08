@@ -1,7 +1,7 @@
 package com.shenjies88.practice.mybatispluspractice.contorller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shenjies88.practice.mybatispluspractice.common.HttpResult;
 import com.shenjies88.practice.mybatispluspractice.entity.User;
@@ -33,7 +33,7 @@ public class UserController {
     public HttpResult<IPage<User>> list(@ApiParam(value = "页数") @RequestParam(defaultValue = "1") Integer pageNum,
                                         @ApiParam(value = "条数") @RequestParam(defaultValue = "10") Integer pageSize) {
         IPage<User> page = new Page<>(pageNum, pageSize);
-        userService.page(page, Wrappers.lambdaQuery(User.class).orderByDesc(User::getId));
+        userService.page(page, new QueryWrapper<User>().orderByDesc("id"));
         return HttpResult.success(page);
     }
 
