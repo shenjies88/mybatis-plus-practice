@@ -33,14 +33,14 @@ public class HttpResult<T> {
     private T data;
 
     public static HttpResult success() {
-        return new HttpResult<>(0, true, "success", null);
+        return new HttpResult(0, true, "success", null);
     }
 
-    public static <U> HttpResult success(U data) {
-        return new HttpResult<>(0, true, "success", data);
+    public static <T> HttpResult success(T data) {
+        return new HttpResult(0, true, "success", data);
     }
 
     public static HttpResult fail(String message) {
-        return new HttpResult<>(1, false, message, null);
+        return new HttpResult(1, false, message, null);
     }
 }

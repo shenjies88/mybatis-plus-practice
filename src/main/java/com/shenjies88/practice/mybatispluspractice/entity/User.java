@@ -4,6 +4,7 @@ package com.shenjies88.practice.mybatispluspractice.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,9 +12,9 @@ import lombok.Data;
 @ApiModel("用户表")
 @Data
 @TableName("user")
-public class User {
+public class User extends Model<User> {
 
-    @ApiModelProperty(value = "主键",hidden = true)
+    @ApiModelProperty(value = "主键", hidden = true)
     @TableId("id")
     private Long id;
 

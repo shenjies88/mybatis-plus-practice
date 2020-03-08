@@ -12,8 +12,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * @author shenjies88
  * @since 2020/3/6-11:55 PM
@@ -32,8 +30,8 @@ public class UserController {
 
     @ApiOperation("用户列表")
     @GetMapping
-    public HttpResult<List<User>> list(@ApiParam(value = "页数") @RequestParam(defaultValue = "1") Integer pageNum,
-                                       @ApiParam(value = "条数") @RequestParam(defaultValue = "10") Integer pageSize) {
+    public HttpResult<IPage<User>> list(@ApiParam(value = "页数") @RequestParam(defaultValue = "1") Integer pageNum,
+                                        @ApiParam(value = "条数") @RequestParam(defaultValue = "10") Integer pageSize) {
         IPage<User> page = new Page<>(pageNum, pageSize);
         userService.page(page, Wrappers.lambdaQuery(User.class).orderByDesc(User::getId));
         return HttpResult.success(page);
