@@ -19,7 +19,6 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-      logic-delete-field: status
       insert-strategy: not_empty
       update-strategy: not_empty
       select-strategy: ignored

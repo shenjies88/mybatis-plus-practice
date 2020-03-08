@@ -30,7 +30,11 @@ public class User extends Model<User> {
     @TableField("email")
     private String email;
 
-    @ApiModelProperty(value = "0正常，1删除" , hidden = true)
-    @TableField(value = "status" , select = false)
+    @ApiModelProperty(value = "0正常，1删除", hidden = true)
+    @TableField(value = "status")
     private Integer status;
+
+    @ApiModelProperty(value = "创建时间", hidden = true)
+    @TableField("create_time")
+    private String createTime;
 }
