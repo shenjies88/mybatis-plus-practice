@@ -2,10 +2,15 @@ spring:
   application:
     name: mybatis-plus-practice
   datasource:
-    url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8
+    url: jdbc:h2:mem:test_db;DATABASE_TO_UPPER=false;MODE=MYSQL;
+    platform: h2
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
     username: root
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  h2:
+    console:
+      enabled: true
 
 logging:
   level:

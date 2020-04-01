@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @ApiOperation("修改用户")
-    @PostMapping("/{id}")
+    @PostMapping
     public HttpResult update(@RequestBody User body) {
         userService.updateById(body);
         return HttpResult.success();
