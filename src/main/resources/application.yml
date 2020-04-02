@@ -24,7 +24,7 @@ mybatis-plus:
       id-type: auto
       insert-strategy: not_empty
       update-strategy: not_empty
-      select-strategy: ignored
+      select-strategy: not_empty
 
 
 
